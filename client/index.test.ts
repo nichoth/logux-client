@@ -410,6 +410,12 @@ it('adds current subprotocol to meta', async () => {
   expect(client.log.entries()[0][1].subprotocol).toBe('1.0.0')
 })
 
+it('adds "added" to meta', async () => {
+  let client = createClient()
+  let newMeta = await client.log.add({ type: 'A' }, { reasons: ['tab' + '1'] })
+  expect(newMeta).to.have.key('added')
+})
+
 it('adds current subprotocol only to own actions', async () => {
   let client = createClient()
   await client.log.add(
