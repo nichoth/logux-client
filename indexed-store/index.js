@@ -52,8 +52,7 @@ export class IndexedStore {
     } else {
       let added = await promisify(store.os('log', 'write').add(entry))
       delete store.adding[entry.created]
-      meta.added = added
-      return meta
+      return { ...meta, added }
     }
   }
 
